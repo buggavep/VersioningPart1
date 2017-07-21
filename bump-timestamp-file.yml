@@ -9,7 +9,7 @@ inputs:
   - name: resource-tutorial
 
 outputs:
-- name: some-files
+  - name: some-files
 
 run:
   path: /bin/bash
@@ -25,15 +25,15 @@ run:
       | grep version \
       | head -1 \
       | awk -F: '{ print $2 }' \
-      | sed 's/[",]//g' \
+      | sed 's/[]/",/g' \
       | tr -d '[[:space:]]')
       echo "current package version:${PACKAGE_VERSION}"
-      mkdir sample
-      cd sample
-      touch test.txt  
+      cd ..
+      ls -la
+      touch test.txt 
+      ls -la
       cp -r test.txt some-files
       cd some-files
-      ls -la  
+      ls -la
       echo "$PACKAGE_VERSION" > "$test.txt"
-      ls -la 
       cat > test.txt	  
